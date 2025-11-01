@@ -535,15 +535,16 @@ class HasManyThrough extends Relation
      * @param  callable  $callback
      * @param  string|null  $column
      * @param  string|null  $alias
+     * @param  mixed  $lastId
      * @return bool
      */
-    public function chunkById($count, callable $callback, $column = null, $alias = null)
+    public function chunkById($count, callable $callback, $column = null, $alias = null, $lastId = null)
     {
         $column ??= $this->getRelated()->getQualifiedKeyName();
 
         $alias ??= $this->getRelated()->getKeyName();
 
-        return $this->prepareQueryBuilder()->chunkById($count, $callback, $column, $alias);
+        return $this->prepareQueryBuilder()->chunkById($count, $callback, $column, $alias, $lastId);
     }
 
     /**
